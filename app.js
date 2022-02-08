@@ -129,3 +129,7 @@ function salarioNetoMensualYAnual(){
 }
 
 salarioNetoMensualYAnual();
+
+
+
+//Hacer con IF
