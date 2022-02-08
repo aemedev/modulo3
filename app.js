@@ -80,19 +80,19 @@ Sacar el neto mensual (si es catorce pagas dividir por catorce, si no por 12)
 */
 
 const empleado = {
-    bruto: 10500,
-    hijos: 0,
-    pagas: 14
+    bruto: 14500,
+    hijos: 1,
+    pagas: 12
 };
 
 //Variables de acceso, condicionales y strings
 let bruto = empleado.bruto;
 let hijos = empleado.hijos;
 let numPagas = empleado.pagas;
-let tramoRetencion0 = bruto < 12000;
-let tramoRetencion8 = bruto > 12000 && bruto < 24000 && hijos > 0;
-let tramoRetencion16 = bruto > 24000 && bruto < 34000 && hijos > 0;
-let tramoRetencionMas30 = bruto > 34000 && hijos > 0;
+// let tramoRetencion0 = bruto < 12000;
+// let tramoRetencion8 = bruto > 12000 && bruto < 24000 && hijos > 0;
+// let tramoRetencion16 = bruto > 24000 && bruto < 34000 && hijos > 0;
+// let tramoRetencionMas30 = bruto > 34000 && hijos > 0;
 let resultadoRetencion = "La retención es ";
 let resultadoAnual = "El sueldo neto anual es ";
 let resultadoMensual = "El sueldo neto mensual es ";
@@ -100,36 +100,75 @@ let resultadoMensual = "El sueldo neto mensual es ";
 //neto anual y mensual en nómina.
 
 function salarioNetoMensualYAnual(){
-    switch (true) {
-        case bruto < 12000: //Comprobación salario bruto inferior a 12000€
-            let netoAnualRetencion0 = tramoRetencion0 ? 0 : netoAnualRetencion8;
-            console.log(resultadoRetencion + netoAnualRetencion0);
-            console.log(resultadoAnual + (bruto - netoAnualRetencion0));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion0) / numPagas));
-            break;
-        case bruto > 12000 && bruto < 24000://Comprobación salario bruto entre 12000 - 24000€
-            let netoAnualRetencion8 = tramoRetencion8 ? bruto * 0.06 : bruto * 0.08;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion8));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
-            break;
-        case bruto > 24000 && bruto < 34000://Comprobación salario bruto entre 24000 - 34000€
-            let netoAnualRetencion16 = tramoRetencion16 ? bruto * 0.14 : bruto * 0.16;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion16));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
-            break;
-        default: //Salario más 34000€
-            let retencionAnualMas30 = tramoRetencionMas30 ? bruto * 0.28 : bruto * 0.3
+    if (bruto > 34000 && hijos > 0) {
+        let retencionAnualMas30 = bruto * 0.28;
             console.log(resultadoRetencion + Math.round(retencionAnualMas30));
             console.log(resultadoAnual + (bruto - retencionAnualMas30));
             console.log(resultadoMensual + Math.round((bruto - retencionAnualMas30) / numPagas));
-            break;
-    };
+    }else if(bruto > 34000) {
+        let retencionAnualMas30 = bruto * 0.3;
+            console.log(resultadoRetencion + Math.round(retencionAnualMas30));
+            console.log(resultadoAnual + (bruto - retencionAnualMas30));
+            console.log(resultadoMensual + Math.round((bruto - retencionAnualMas30) / numPagas));
+    }else if (bruto > 24000 && bruto < 34000 && hijos > 0) {
+        let netoAnualRetencion16 = bruto * 0.14;
+            console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
+            console.log(resultadoAnual + (bruto - netoAnualRetencion16));
+            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
+    }else if (bruto > 24000 && bruto < 34000) {
+        let netoAnualRetencion16 = bruto * 0.16;
+            console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
+            console.log(resultadoAnual + (bruto - netoAnualRetencion16));
+            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
+    }else if (bruto > 12000 && bruto < 24000 && hijos > 0) {
+        let netoAnualRetencion8 = bruto * 0.06;
+            console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
+            console.log(resultadoAnual + (bruto - netoAnualRetencion8));
+            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
+    }else if (bruto > 12000 && bruto < 24000) {
+        let netoAnualRetencion8 = bruto * 0.08;
+            console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
+            console.log(resultadoAnual + (bruto - netoAnualRetencion8));
+            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
+    }else if (bruto < 12000) {
+        let netoAnualRetencion0 = 0;
+            console.log(resultadoRetencion + netoAnualRetencion0);
+            console.log(resultadoAnual + (bruto - netoAnualRetencion0));
+            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion0) / numPagas));
+    }
 }
 
 salarioNetoMensualYAnual();
 
 
+//Solución con Swtch
+// function salarioNetoMensualYAnual(){
+//     switch (true) {
+//         case bruto < 12000: //Comprobación salario bruto inferior a 12000€
+//             let netoAnualRetencion0 = tramoRetencion0 ? 0 : netoAnualRetencion8;
+//             console.log(resultadoRetencion + netoAnualRetencion0);
+//             console.log(resultadoAnual + (bruto - netoAnualRetencion0));
+//             console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion0) / numPagas));
+//             break;
+//         case bruto > 12000 && bruto < 24000://Comprobación salario bruto entre 12000 - 24000€
+//             let netoAnualRetencion8 = tramoRetencion8 ? bruto * 0.06 : bruto * 0.08;
+//             console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
+//             console.log(resultadoAnual + (bruto - netoAnualRetencion8));
+//             console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
+//             break;
+//         case bruto > 24000 && bruto < 34000://Comprobación salario bruto entre 24000 - 34000€
+//             let netoAnualRetencion16 = tramoRetencion16 ? bruto * 0.14 : bruto * 0.16;
+//             console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
+//             console.log(resultadoAnual + (bruto - netoAnualRetencion16));
+//             console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
+//             break;
+//         default: //Salario más 34000€
+//             let retencionAnualMas30 = tramoRetencionMas30 ? bruto * 0.28 : bruto * 0.3
+//             console.log(resultadoRetencion + Math.round(retencionAnualMas30));
+//             console.log(resultadoAnual + (bruto - retencionAnualMas30));
+//             console.log(resultadoMensual + Math.round((bruto - retencionAnualMas30) / numPagas));
+//             break;
+//     };
+// }
 
-//Hacer con IF
+// salarioNetoMensualYAnual();
