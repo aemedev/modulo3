@@ -82,7 +82,7 @@ Sacar el neto mensual (si es catorce pagas dividir por catorce, si no por 12)
 const empleado = {
     bruto: 14500,
     hijos: 1,
-    pagas: 12
+    pagas: 14
 };
 
 //Variables de acceso, condicionales y strings
@@ -93,48 +93,40 @@ let numPagas = empleado.pagas;
 // let tramoRetencion8 = bruto > 12000 && bruto < 24000 && hijos > 0;
 // let tramoRetencion16 = bruto > 24000 && bruto < 34000 && hijos > 0;
 // let tramoRetencionMas30 = bruto > 34000 && hijos > 0;
-let resultadoRetencion = "La retención es ";
-let resultadoAnual = "El sueldo neto anual es ";
-let resultadoMensual = "El sueldo neto mensual es ";
+// let resultadoRetencion = "La retención es ";
+// let resultadoAnual = "El sueldo neto anual es ";
+// let resultadoMensual = "El sueldo neto mensual es ";
 
 //neto anual y mensual en nómina.
+
+function mensajesSalario(retencion) {
+    console.log("La retención es " + Math.round(retencion));
+    console.log("El sueldo neto anual es " + (bruto - retencion));
+    console.log("El sueldo neto mensual es " + Math.round((bruto - retencion) / numPagas));
+}
 
 function salarioNetoMensualYAnual(){
     if (bruto > 34000 && hijos > 0) {
         let retencionAnualMas30 = bruto * 0.28;
-            console.log(resultadoRetencion + Math.round(retencionAnualMas30));
-            console.log(resultadoAnual + (bruto - retencionAnualMas30));
-            console.log(resultadoMensual + Math.round((bruto - retencionAnualMas30) / numPagas));
+            mensajesSalario(retencionAnualMas30);
     }else if(bruto > 34000) {
         let retencionAnualMas30 = bruto * 0.3;
-            console.log(resultadoRetencion + Math.round(retencionAnualMas30));
-            console.log(resultadoAnual + (bruto - retencionAnualMas30));
-            console.log(resultadoMensual + Math.round((bruto - retencionAnualMas30) / numPagas));
+            mensajesSalario(retencionAnualMas30);
     }else if (bruto > 24000 && bruto < 34000 && hijos > 0) {
         let netoAnualRetencion16 = bruto * 0.14;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion16));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
+            mensajesSalario(netoAnualRetencion16);
     }else if (bruto > 24000 && bruto < 34000) {
         let netoAnualRetencion16 = bruto * 0.16;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion16));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion16));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion16) / numPagas));
+            mensajesSalario(netoAnualRetencion16);
     }else if (bruto > 12000 && bruto < 24000 && hijos > 0) {
         let netoAnualRetencion8 = bruto * 0.06;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion8));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
+        mensajesSalario(netoAnualRetencion8);
     }else if (bruto > 12000 && bruto < 24000) {
         let netoAnualRetencion8 = bruto * 0.08;
-            console.log(resultadoRetencion + Math.round(netoAnualRetencion8));
-            console.log(resultadoAnual + (bruto - netoAnualRetencion8));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion8) / numPagas));
+        mensajesSalario(netoAnualRetencion8);
     }else if (bruto < 12000) {
         let netoAnualRetencion0 = 0;
-            console.log(resultadoRetencion + netoAnualRetencion0);
-            console.log(resultadoAnual + (bruto - netoAnualRetencion0));
-            console.log(resultadoMensual + Math.round((bruto - netoAnualRetencion0) / numPagas));
+        mensajesSalario(netoAnualRetencion0);
     }
 }
 
